@@ -1,0 +1,74 @@
+---
+title: "IS6481 | Lab 5 -- Unsupervised Learning Responses"
+output: 
+  html_document: 
+    theme: cosmo
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# options(width = 120)
+library(ggplot2)
+library(fpc)
+library(tidyverse)
+library(reshape2)
+# library(hrbrthemes)
+library(ggrepel)
+
+mm <- src_mysql(
+  host='is6481-mysql.cffidl3kiu88.us-east-1.rds.amazonaws.com',
+  port=3306,
+  user='root',
+  password='test1234',
+  dbname='unsupervised_learning'
+)
+```
+
+```{r data_acquisition,message=FALSE,warning=FALSE,echo=FALSE}
+d_protein <- tbl(mm,'protein') %>% collect() # Get data from the database
+```
+
+## To Turn In
+This document serves as the template for this assignment. Go through each set of questions and answer them to the best of your ability. Please answer in-line with the bulleted questions. When you are finished, please click the "Knit" button above to preview the final document (should be an HTML document). When finished, download the file from R Studio Cloud
+
+## Understanding Density Plots
+Answer the following questions:
+
+* *Look at the density plot for white meat, what does it mean? In other words, what does it tell you about white mean consumption?*
+* *What would a bad set of density plots look like for a cluster solution?*
+* *Do you think this set of variables will provide an interesting solution? Why?*
+
+```{r explore_visually,fig.height=8,fig.width=10,echo=FALSE}
+density_data <- d_protein %>% #select(Country,RedMeat,WhiteMeat,Eggs,Milk) %>% 
+    melt(id=c('Country'),variable.name='type')
+ggplot(density_data, aes(x=value)) + 
+    geom_density(fill='#F6FEAA',alpha=0.6) + 
+    facet_wrap(~type,scales='free') +
+    labs(x='Value',y='Density Fuction') +
+    theme_minimal() +
+    theme(panel.grid.minor.y=element_blank())
+```
+
+
+
+**TODO(student)** -- Answer the following questions:
+
+* What do you think it would do to the solution to collapse the two meat variables?
+
+
+
+**TODO(student)** -- Do the following.
+
+* Choose a different cluster algorithm and run it on the same inputs.
+* Using the below code, compare the two solutions.
+
+
+**TODO(student)** -- Do the following.
+
+* Name clusters 2 -- 5.
+
+
+***TODO(student)***: Copy the following question(s) and add your response to your submission document:
+
+1. Create a new cluster model that has only 3 clusters.  Analyze the cluster model using numeric and visual techniques similar to above.  Submit the code used to create and analyze the new cluster model. 
+
