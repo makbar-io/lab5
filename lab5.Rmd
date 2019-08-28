@@ -157,4 +157,4 @@ ggplot(projection_with_labels, aes(x=PC1, y=PC2)) +
 Another question often asked regarding cluster solutions is how many clusters there should be. While there are various numeric measures to determine the number of clusters, the question is one often regarding how useful the solutions are to the business. Remeber there's a lot of art going on here as we decide how to transform variables, which variables to use, and how we name the clusters (thereby presenting them to others).
 
 # To-do
-Log in to R Studio Cloud and click on Lab 5. This will be setup as an assignment which will create a personalized version of the assignment. The environment is already setup to complete the exercises. Open the file called "lab5_turnin.Rmd" and follow the instructions by editing that file.
+Log in to R Studio Cloud and click on Lab 5 in the workspace for this course. This will be setup as an assignment which will create a personalized version of the assignment. The environment is already setup to complete the exercises. Open the file called "lab5_turnin.Rmd" and follow the instructions by editing that file.
