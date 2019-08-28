@@ -81,6 +81,7 @@ Give a descriptive name to each of the clusters.
 * *Cluster 4*
 * *Cluster 5*
 
+Following is a cluster analysis of the same data but using a different clustering algorithm. Look at the profiling table and answer the questions below.
 ```{r hier_cluster}
 d <- dist(m_protein,method='euclidean')
 hc1 <- hclust(d,method='ward.D')
@@ -108,7 +109,7 @@ Give a descriptive name to each of the clusters.
 
 ### Change the number of clusters
 
-Copy either of the code segments from above, change the number of clusters and do the following^[Hint: it will likely be easier if you choose a smaller number of clusters].
+Copy either of the clustering code segments from above, change the number of clusters and do the following^[Hint: it will likely be easier if you choose a smaller number of clusters].
 
 * *Name each of the clusters*
 * *Describe the differences between the two solutions*
