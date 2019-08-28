@@ -147,11 +147,6 @@ combine them in novel ways. For example, in this situation, we could
 narrow down our set of variables by combining the two meat categories by
 taking the row-wise maximum between RedMeat and WhiteMeat.
 
-**TODO(student)** – Answer the following questions:
-
--   What do you think it would do to the solution to collapse the two
-    meat variables?
-
 ### Choose a transformation method (none being a viable option)
 
 There quite a few ways to transform data. There are a few ways transform
@@ -239,11 +234,6 @@ see below.
     set.seed(42)
     cluster_model <- kmeans(m_protein, centers=5)
 
-**TODO(student)** – Do the following.
-
--   Choose a different cluster algorithm and run it on the same inputs.
--   Using the below code, compare the two solutions.
-
 ### Evaluate solutions
 
 The cluster algorithm will output some diagnostics (as seen below).
@@ -288,12 +278,6 @@ This table shows, for example, that cluster 1 is very high on Milk and
 Fish, somewhat high on Eggs and Starch and very low on Fruits and
 Vegetables. We might name this cluster “The Seaside Diet” based on this
 profile.
-
-**TODO(student)** – Do the following.
-
--   Name clusters 2 – 5.
-
-<!-- -->
 
     cluster_model$centers %>% t() %>% knitr::kable()
 
@@ -418,9 +402,11 @@ art going on here as we decide how to transform variables, which
 variables to use, and how we name the clusters (thereby presenting them
 to others).
 
-***TODO(student)***: Copy the following question(s) and add your
-response to your submission document:
+To-do
+=====
 
-1.  Create a new cluster model that has only 3 clusters. Analyze the
-    cluster model using numeric and visual techniques similar to above.
-    Submit the code used to create and analyze the new cluster model.
+Log in to R Studio Cloud and click on Lab 5. This will be setup as an
+assignment which will create a personalized version of the assignment.
+The environment is already setup to complete the exercises. Open the
+file called “lab5\_turnin.Rmd” and follow the instructions by editing
+that file.

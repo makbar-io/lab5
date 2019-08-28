@@ -82,10 +82,6 @@ ggplot(density_data, aes(x=value)) +
 ### Choose a set of variables
 In this example, we are likely to use all of the variables available in the data set. That is because we don't have a ton of options and due to the fact that the problem is quite simple. In other more complex situations we might choose to leave out certain variables or we might combine them in novel ways. For example, in this situation, we could narrow down our set of variables by combining the two meat categories by taking the row-wise maximum between RedMeat and WhiteMeat.
 
-**TODO(student)** -- Answer the following questions:
-
-* What do you think it would do to the solution to collapse the two meat variables?
-
 ### Choose a transformation method (none being a viable option)
 There quite a few ways to transform data. There are a few ways transform data that include collapsing rows via some kind of aggregation, collapsing columns (as discussed earlier), or to modifying the variables in some way. One very common modification when working with questionnaire data is to take what is called a Top 2 Box score. If you're dealing with some sort of agreement scale with 7 levels, a Top 2 Box score would assign the value 1 to scores 6 and 7 and 0 to all the lower scores. This is very helpful when evalutaing a solution but can also be used as an input into the clustering algorithm.
 
@@ -123,10 +119,6 @@ set.seed(42)
 cluster_model <- kmeans(m_protein, centers=5)
 ```
 
-**TODO(student)** -- Do the following.
-
-* Choose a different cluster algorithm and run it on the same inputs.
-* Using the below code, compare the two solutions.
 
 ### Evaluate solutions
 The cluster algorithm will output some diagnostics (as seen below).
@@ -137,10 +129,6 @@ cluster_model
 In my experience, the next step would be to look through the clusters to determine if the subjective meaning of the clusters is useful. To do this, we will look at the following table (the transpose of the cluster means seen above).
 
 This table shows, for example, that cluster 1 is very high on Milk and Fish, somewhat high on Eggs and Starch and very low on Fruits and Vegetables. We might name this cluster "The Seaside Diet" based on this profile.
-
-**TODO(student)** -- Do the following.
-
-* Name clusters 2 -- 5.
 
 
 ```{r profiling_table}
@@ -168,8 +156,5 @@ ggplot(projection_with_labels, aes(x=PC1, y=PC2)) +
 #### Number of clusters
 Another question often asked regarding cluster solutions is how many clusters there should be. While there are various numeric measures to determine the number of clusters, the question is one often regarding how useful the solutions are to the business. Remeber there's a lot of art going on here as we decide how to transform variables, which variables to use, and how we name the clusters (thereby presenting them to others).
 
-***TODO(student)***: Copy the following question(s) and add your response to your submission document:
-
-1. Create a new cluster model that has only 3 clusters.  Analyze the cluster model using numeric and visual techniques similar to above.  Submit the code used to create and analyze the new cluster model. 
-
-
+# To-do
+Log in to R Studio Cloud and click on Lab 5. This will be setup as an assignment which will create a personalized version of the assignment. The environment is already setup to complete the exercises. Open the file called "lab5_turnin.Rmd" and follow the instructions by editing that file.
