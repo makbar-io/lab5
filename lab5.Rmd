@@ -78,16 +78,11 @@ ggplot(density_data, aes(x=value)) +
     theme(panel.grid.minor.y=element_blank())
 ```
 
-***TODO(student)*** -- Answer the following questions:
-
-* Look at the density plot for white meat, what does it mean? In other words, what does it tell you aboub white mean consumption?
-* What would a bad set of density plots look like for a cluster solution?
-* Do you think this set of variables will provide an interesting solution? Why?
 
 ### Choose a set of variables
 In this example, we are likely to use all of the variables available in the data set. That is because we don't have a ton of options and due to the fact that the problem is quite simple. In other more complex situations we might choose to leave out certain variables or we might combine them in novel ways. For example, in this situation, we could narrow down our set of variables by combining the two meat categories by taking the row-wise maximum between RedMeat and WhiteMeat.
 
-***TODO(student)*** -- Answer the following questions:
+**TODO(student)** -- Answer the following questions:
 
 * What do you think it would do to the solution to collapse the two meat variables?
 
@@ -128,7 +123,7 @@ set.seed(42)
 cluster_model <- kmeans(m_protein, centers=5)
 ```
 
-***TODO(student)*** -- Do the following.
+**TODO(student)** -- Do the following.
 
 * Choose a different cluster algorithm and run it on the same inputs.
 * Using the below code, compare the two solutions.
@@ -143,7 +138,7 @@ In my experience, the next step would be to look through the clusters to determi
 
 This table shows, for example, that cluster 1 is very high on Milk and Fish, somewhat high on Eggs and Starch and very low on Fruits and Vegetables. We might name this cluster "The Seaside Diet" based on this profile.
 
-***TODO(student)*** -- Do the following.
+**TODO(student)** -- Do the following.
 
 * Name clusters 2 -- 5.
 
