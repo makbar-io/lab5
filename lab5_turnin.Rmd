@@ -34,7 +34,7 @@ This document serves as the template for this assignment. Go through each set of
 ### Understanding Density Plots
 Answer the following questions:
 
-* *Look at the density plot for white meat, what does it mean? In other words, what does it tell you about white mean consumption?*
+* *Look at the density plot for white meat, what does it mean? In other words, what does it tell you about white meat consumption?*
 * *What would a bad set of density plots look like for a cluster solution?*
 * *Do you think this set of variables will provide an interesting solution? Why?*
 
