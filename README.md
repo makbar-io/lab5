@@ -274,10 +274,10 @@ determine if the subjective meaning of the clusters is useful. To do
 this, we will look at the following table (the transpose of the cluster
 means seen above).
 
-This table shows, for example, that cluster 1 is very high on Milk and
-Fish, somewhat high on Eggs and Starch and very low on Fruits and
-Vegetables. We might name this cluster “The Seaside Diet” based on this
-profile.
+This table shows, for example, that cluster 1 is very high on Fish,
+Fruits and Vegetables, and Nuts. It is very low on Milk, Eggs and
+Red/White Meat. We might name this cluster “The Seaside Diet” based on
+this profile.
 
     cluster_model$centers %>% t() %>% knitr::kable()
 
