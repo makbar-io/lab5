@@ -1,5 +1,4 @@
-About Unsupervised Learning/Cluster Analysis
-============================================
+# About Unsupervised Learning/Cluster Analysis
 
 Unsupervised data mining includes methods that discover unknown
 relationships in data. With unsupervised data mining, there’s no outcome
@@ -84,27 +83,20 @@ the data. This is first done by examining summary stats as seen below.
     d_protein <- tbl(mm,'protein') %>% collect() # Get data from the database
     summary(d_protein) 
 
-    ##    Country             RedMeat       WhiteMeat          Eggs     
-    ##  Length:25          Min.   : 4.0   Min.   : 1.00   Min.   :1.00  
-    ##  Class :character   1st Qu.: 8.0   1st Qu.: 5.00   1st Qu.:3.00  
-    ##  Mode  :character   Median :10.0   Median : 8.00   Median :3.00  
-    ##                     Mean   : 9.8   Mean   : 7.92   Mean   :3.08  
-    ##                     3rd Qu.:11.0   3rd Qu.:11.00   3rd Qu.:4.00  
-    ##                     Max.   :18.0   Max.   :14.00   Max.   :5.00  
-    ##       Milk            Fish          Cereals          Starch    
-    ##  Min.   : 5.00   Min.   : 0.00   Min.   :19.00   Min.   :1.00  
-    ##  1st Qu.:11.00   1st Qu.: 2.00   1st Qu.:24.00   1st Qu.:3.00  
-    ##  Median :18.00   Median : 3.00   Median :28.00   Median :5.00  
-    ##  Mean   :17.28   Mean   : 4.28   Mean   :32.32   Mean   :4.36  
-    ##  3rd Qu.:23.00   3rd Qu.: 6.00   3rd Qu.:40.00   3rd Qu.:6.00  
-    ##  Max.   :34.00   Max.   :14.00   Max.   :57.00   Max.   :7.00  
-    ##       Nuts         FrAndVeg  
-    ##  Min.   :1.00   Min.   :1.0  
-    ##  1st Qu.:2.00   1st Qu.:3.0  
-    ##  Median :2.00   Median :4.0  
-    ##  Mean   :3.08   Mean   :4.2  
-    ##  3rd Qu.:5.00   3rd Qu.:5.0  
-    ##  Max.   :8.00   Max.   :8.0
+    ##    Country             RedMeat       WhiteMeat          Eggs           Milk            Fish          Cereals          Starch          Nuts     
+    ##  Length:25          Min.   : 4.0   Min.   : 1.00   Min.   :1.00   Min.   : 5.00   Min.   : 0.00   Min.   :19.00   Min.   :1.00   Min.   :1.00  
+    ##  Class :character   1st Qu.: 8.0   1st Qu.: 5.00   1st Qu.:3.00   1st Qu.:11.00   1st Qu.: 2.00   1st Qu.:24.00   1st Qu.:3.00   1st Qu.:2.00  
+    ##  Mode  :character   Median :10.0   Median : 8.00   Median :3.00   Median :18.00   Median : 3.00   Median :28.00   Median :5.00   Median :2.00  
+    ##                     Mean   : 9.8   Mean   : 7.92   Mean   :3.08   Mean   :17.28   Mean   : 4.28   Mean   :32.32   Mean   :4.36   Mean   :3.08  
+    ##                     3rd Qu.:11.0   3rd Qu.:11.00   3rd Qu.:4.00   3rd Qu.:23.00   3rd Qu.: 6.00   3rd Qu.:40.00   3rd Qu.:6.00   3rd Qu.:5.00  
+    ##                     Max.   :18.0   Max.   :14.00   Max.   :5.00   Max.   :34.00   Max.   :14.00   Max.   :57.00   Max.   :7.00   Max.   :8.00  
+    ##     FrAndVeg  
+    ##  Min.   :1.0  
+    ##  1st Qu.:3.0  
+    ##  Median :4.0  
+    ##  Mean   :4.2  
+    ##  3rd Qu.:5.0  
+    ##  Max.   :8.0
 
 These summary stats are fine, but they don’t give us a good picture into
 the data. It is often preferred to look at some visualizations of the
@@ -127,7 +119,7 @@ each variable looks like on its own. See the density plots below for the
 data in question.
 
     density_data <- d_protein %>% #select(Country,RedMeat,WhiteMeat,Eggs,Milk) %>% 
-        melt(id=c('Country'),variable.name='type')
+        pivot_longer(cols=-Country,names_to='type')
     ggplot(density_data, aes(x=value)) + 
         geom_density(fill='#F6FEAA',alpha=0.6) + 
         facet_wrap(~type,scales='free') +
@@ -203,6 +195,12 @@ are now 0 and 1 respectively. This is the case for all of the variables
 in the data set.
 
 <table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 17%" />
+<col style="width: 32%" />
+<col style="width: 33%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: right;">Mean Red Meat</th>
@@ -243,18 +241,12 @@ The cluster algorithm will output some diagnostics (as seen below).
     ## K-means clustering with 5 clusters of sizes 2, 11, 4, 2, 6
     ## 
     ## Cluster means:
-    ##    st_RedMeat st_WhiteMeat     st_Eggs    st_Milk     st_Fish st_Cereals
-    ## 1 -0.96961017   -1.1815761 -0.96856767 -1.4483663  1.79232611 -0.3923599
-    ## 2  0.77996190    0.3373154  0.66201763  0.8699420  0.31225559 -0.7804264
-    ## 3 -0.82269954   -0.9142512 -1.41697862 -1.0961371 -1.01718829  1.7192995
-    ## 4 -0.08814638   -1.0479136 -0.07174575 -0.1803413  0.06339417  0.6521168
-    ## 5 -0.52887828    0.7342524  0.07772457 -0.3212330 -0.51291647  0.1979965
-    ##    st_Starch    st_Nuts st_FrAndVeg
-    ## 1  0.9907602  1.1985682  1.72336879
-    ## 2  0.2767978 -0.6249484 -0.38930094
-    ## 3 -1.4257281  1.0747492 -0.62667956
-    ## 4 -1.4257281  1.4462063  1.46225231
-    ## 5  0.5880122 -0.4523522  0.06963106
+    ##    st_RedMeat st_WhiteMeat     st_Eggs    st_Milk     st_Fish st_Cereals  st_Starch    st_Nuts st_FrAndVeg
+    ## 1 -0.96961017   -1.1815761 -0.96856767 -1.4483663  1.79232611 -0.3923599  0.9907602  1.1985682  1.72336879
+    ## 2  0.77996190    0.3373154  0.66201763  0.8699420  0.31225559 -0.7804264  0.2767978 -0.6249484 -0.38930094
+    ## 3 -0.82269954   -0.9142512 -1.41697862 -1.0961371 -1.01718829  1.7192995 -1.4257281  1.0747492 -0.62667956
+    ## 4 -0.08814638   -1.0479136 -0.07174575 -0.1803413  0.06339417  0.6521168 -1.4257281  1.4462063  1.46225231
+    ## 5 -0.52887828    0.7342524  0.07772457 -0.3212330 -0.51291647  0.1979965  0.5880122 -0.4523522  0.06963106
     ## 
     ## Clustering vector:
     ##  [1] 3 5 2 3 5 2 5 2 2 4 5 2 4 2 2 5 1 3 1 2 2 2 5 2 3
@@ -265,9 +257,7 @@ The cluster algorithm will output some diagnostics (as seen below).
     ## 
     ## Available components:
     ## 
-    ## [1] "cluster"      "centers"      "totss"        "withinss"    
-    ## [5] "tot.withinss" "betweenss"    "size"         "iter"        
-    ## [9] "ifault"
+    ## [1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss" "betweenss"    "size"         "iter"         "ifault"
 
 In my experience, the next step would be to look through the clusters to
 determine if the subjective meaning of the clusters is useful. To do
@@ -284,7 +274,7 @@ this profile.
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th style="text-align: left;"></th>
 <th style="text-align: right;">1</th>
 <th style="text-align: right;">2</th>
 <th style="text-align: right;">3</th>
@@ -294,7 +284,7 @@ this profile.
 </thead>
 <tbody>
 <tr class="odd">
-<td>st_RedMeat</td>
+<td style="text-align: left;">st_RedMeat</td>
 <td style="text-align: right;">-0.9696102</td>
 <td style="text-align: right;">0.7799619</td>
 <td style="text-align: right;">-0.8226995</td>
@@ -302,7 +292,7 @@ this profile.
 <td style="text-align: right;">-0.5288783</td>
 </tr>
 <tr class="even">
-<td>st_WhiteMeat</td>
+<td style="text-align: left;">st_WhiteMeat</td>
 <td style="text-align: right;">-1.1815761</td>
 <td style="text-align: right;">0.3373154</td>
 <td style="text-align: right;">-0.9142512</td>
@@ -310,7 +300,7 @@ this profile.
 <td style="text-align: right;">0.7342524</td>
 </tr>
 <tr class="odd">
-<td>st_Eggs</td>
+<td style="text-align: left;">st_Eggs</td>
 <td style="text-align: right;">-0.9685677</td>
 <td style="text-align: right;">0.6620176</td>
 <td style="text-align: right;">-1.4169786</td>
@@ -318,7 +308,7 @@ this profile.
 <td style="text-align: right;">0.0777246</td>
 </tr>
 <tr class="even">
-<td>st_Milk</td>
+<td style="text-align: left;">st_Milk</td>
 <td style="text-align: right;">-1.4483663</td>
 <td style="text-align: right;">0.8699420</td>
 <td style="text-align: right;">-1.0961371</td>
@@ -326,7 +316,7 @@ this profile.
 <td style="text-align: right;">-0.3212330</td>
 </tr>
 <tr class="odd">
-<td>st_Fish</td>
+<td style="text-align: left;">st_Fish</td>
 <td style="text-align: right;">1.7923261</td>
 <td style="text-align: right;">0.3122556</td>
 <td style="text-align: right;">-1.0171883</td>
@@ -334,7 +324,7 @@ this profile.
 <td style="text-align: right;">-0.5129165</td>
 </tr>
 <tr class="even">
-<td>st_Cereals</td>
+<td style="text-align: left;">st_Cereals</td>
 <td style="text-align: right;">-0.3923599</td>
 <td style="text-align: right;">-0.7804264</td>
 <td style="text-align: right;">1.7192995</td>
@@ -342,7 +332,7 @@ this profile.
 <td style="text-align: right;">0.1979965</td>
 </tr>
 <tr class="odd">
-<td>st_Starch</td>
+<td style="text-align: left;">st_Starch</td>
 <td style="text-align: right;">0.9907602</td>
 <td style="text-align: right;">0.2767978</td>
 <td style="text-align: right;">-1.4257281</td>
@@ -350,7 +340,7 @@ this profile.
 <td style="text-align: right;">0.5880122</td>
 </tr>
 <tr class="even">
-<td>st_Nuts</td>
+<td style="text-align: left;">st_Nuts</td>
 <td style="text-align: right;">1.1985682</td>
 <td style="text-align: right;">-0.6249484</td>
 <td style="text-align: right;">1.0747492</td>
@@ -358,7 +348,7 @@ this profile.
 <td style="text-align: right;">-0.4523522</td>
 </tr>
 <tr class="odd">
-<td>st_FrAndVeg</td>
+<td style="text-align: left;">st_FrAndVeg</td>
 <td style="text-align: right;">1.7233688</td>
 <td style="text-align: right;">-0.3893009</td>
 <td style="text-align: right;">-0.6266796</td>
@@ -402,8 +392,7 @@ art going on here as we decide how to transform variables, which
 variables to use, and how we name the clusters (thereby presenting them
 to others).
 
-To-do
-=====
+# To-do
 
 Log in to R Studio Cloud and click on Lab 5 in the workspace for this
 course. This will be setup as an assignment which will create a

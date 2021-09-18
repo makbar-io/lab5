@@ -11,12 +11,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(fpc)
 library(tidyverse)
-library(reshape2)
-# library(hrbrthemes)
 library(ggrepel)
 
 mm <- src_mysql(
-  host='is6481-fall2019.cseaimmgk5zc.us-east-1.rds.amazonaws.com',
+  host='is6481-dvdrental.c34wx99dkjzs.us-east-1.rds.amazonaws.com',
   port=3306,
   user='admin',
   password='test1234',
@@ -69,7 +67,7 @@ As mentioned, the density plot gives you a lot of information about what each va
 
 ```{r explore_visually,fig.height=8,fig.width=10}
 density_data <- d_protein %>% #select(Country,RedMeat,WhiteMeat,Eggs,Milk) %>% 
-    melt(id=c('Country'),variable.name='type')
+    pivot_longer(cols=-Country,names_to='type')
 ggplot(density_data, aes(x=value)) + 
     geom_density(fill='#F6FEAA',alpha=0.6) + 
     facet_wrap(~type,scales='free') +
