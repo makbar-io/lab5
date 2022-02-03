@@ -14,9 +14,9 @@ library(tidyverse)
 library(ggrepel)
 
 mm <- src_mysql(
-  host='is6481-dvdrental.c34wx99dkjzs.us-east-1.rds.amazonaws.com',
+  host='is6481-classroom-spring22.cwcvuavxwtmk.us-east-1.rds.amazonaws.com',
   port=3306,
-  user='admin',
+  user='student',
   password='test1234',
   dbname='unsupervised_learning'
 )
