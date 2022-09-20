@@ -271,7 +271,15 @@ this profile.
 
     cluster_model$centers %>% t() %>% knitr::kable()
 
-<table>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
