@@ -83,20 +83,13 @@ the data. This is first done by examining summary stats as seen below.
     d_protein <- tbl(mm,'protein') %>% collect() # Get data from the database
     summary(d_protein) 
 
-    ##    Country             RedMeat       WhiteMeat          Eggs           Milk            Fish          Cereals          Starch          Nuts     
-    ##  Length:25          Min.   : 4.0   Min.   : 1.00   Min.   :1.00   Min.   : 5.00   Min.   : 0.00   Min.   :19.00   Min.   :1.00   Min.   :1.00  
-    ##  Class :character   1st Qu.: 8.0   1st Qu.: 5.00   1st Qu.:3.00   1st Qu.:11.00   1st Qu.: 2.00   1st Qu.:24.00   1st Qu.:3.00   1st Qu.:2.00  
-    ##  Mode  :character   Median :10.0   Median : 8.00   Median :3.00   Median :18.00   Median : 3.00   Median :28.00   Median :5.00   Median :2.00  
-    ##                     Mean   : 9.8   Mean   : 7.92   Mean   :3.08   Mean   :17.28   Mean   : 4.28   Mean   :32.32   Mean   :4.36   Mean   :3.08  
-    ##                     3rd Qu.:11.0   3rd Qu.:11.00   3rd Qu.:4.00   3rd Qu.:23.00   3rd Qu.: 6.00   3rd Qu.:40.00   3rd Qu.:6.00   3rd Qu.:5.00  
-    ##                     Max.   :18.0   Max.   :14.00   Max.   :5.00   Max.   :34.00   Max.   :14.00   Max.   :57.00   Max.   :7.00   Max.   :8.00  
-    ##     FrAndVeg  
-    ##  Min.   :1.0  
-    ##  1st Qu.:3.0  
-    ##  Median :4.0  
-    ##  Mean   :4.2  
-    ##  3rd Qu.:5.0  
-    ##  Max.   :8.0
+    ##    Country             RedMeat       WhiteMeat          Eggs           Milk            Fish          Cereals          Starch          Nuts         FrAndVeg  
+    ##  Length:25          Min.   : 4.0   Min.   : 1.00   Min.   :1.00   Min.   : 5.00   Min.   : 0.00   Min.   :19.00   Min.   :1.00   Min.   :1.00   Min.   :1.0  
+    ##  Class :character   1st Qu.: 8.0   1st Qu.: 5.00   1st Qu.:3.00   1st Qu.:11.00   1st Qu.: 2.00   1st Qu.:24.00   1st Qu.:3.00   1st Qu.:2.00   1st Qu.:3.0  
+    ##  Mode  :character   Median :10.0   Median : 8.00   Median :3.00   Median :18.00   Median : 3.00   Median :28.00   Median :5.00   Median :2.00   Median :4.0  
+    ##                     Mean   : 9.8   Mean   : 7.92   Mean   :3.08   Mean   :17.28   Mean   : 4.28   Mean   :32.32   Mean   :4.36   Mean   :3.08   Mean   :4.2  
+    ##                     3rd Qu.:11.0   3rd Qu.:11.00   3rd Qu.:4.00   3rd Qu.:23.00   3rd Qu.: 6.00   3rd Qu.:40.00   3rd Qu.:6.00   3rd Qu.:5.00   3rd Qu.:5.0  
+    ##                     Max.   :18.0   Max.   :14.00   Max.   :5.00   Max.   :34.00   Max.   :14.00   Max.   :57.00   Max.   :7.00   Max.   :8.00   Max.   :8.0
 
 These summary stats are fine, but they don’t give us a good picture into
 the data. It is often preferred to look at some visualizations of the

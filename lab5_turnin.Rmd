@@ -14,7 +14,7 @@ library(tidyverse)
 library(ggrepel)
 
 mm <- src_mysql(
-  host='is6481-classroom-data.crximyhxko7e.us-east-1.rds.amazonaws.com',
+  host='is6481-spring23.cvimc3gkg4ne.us-east-1.rds.amazonaws.com',
   port=3306,
   user='admin',
   password='test1234',
